@@ -5,25 +5,41 @@
 
 package ex15;
 
-/*
-Passwords are validated by comparing a user-provided value with a known value that’s stored. Either it’s correct or it’s not.
-
-Create a simple program that validates user login credentials. The program must prompt the user for a username and password. The program should compare the password given by the user to a known password. If the password matches, the program should display “Welcome!” If it doesn’t match, the program should display “I don’t know you.”
-
-Example Output
-What is the password? 12345
-I don't know you.
-Or
-
-What is the password? abc$123
-Welcome!
-Constraints
-Use an if/else statement for this problem.
-Make sure the program is case sensitive.
- */
+import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {
+    static Scanner in = new Scanner(System.in);
+    public static String PASSWORD = "abc$123";
 
+    public static void main(String[] args) {
+        App myApp = new App();
+
+        // Input
+        String userPass = myApp.readPass();
+
+        // Output
+        String outputString = myApp.generateOutput(userPass);
+        myApp.print(outputString);
+    }
+
+    public String readPass() {
+        System.out.print("What is the password? ");
+        return in.nextLine();
+    }
+
+    public String generateOutput(String userPass) {
+        String outputString;
+
+        if (userPass.equals(PASSWORD)) {
+            outputString = "Welcome!";
+        } else {
+            outputString = "I don't know you.";
+        }
+
+        return outputString;
+    }
+
+    public void print(String output) {
+        System.out.println(output);
     }
 }
